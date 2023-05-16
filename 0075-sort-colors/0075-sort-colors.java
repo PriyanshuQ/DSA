@@ -4,9 +4,9 @@ class Solution {
         int one = 0;
         int two = 0;
 
-        for(int i:nums){
-            if(i==0) zero++;
-            else if(i==1) one++;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==0) zero++;
+            else if(nums[i]==1) one++;
             else two++;
         }
 
