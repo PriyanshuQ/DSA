@@ -1,18 +1,14 @@
 class Solution {
     public int singleNonDuplicate(int[] nums) {
-        int low = 0;
-        int high = nums.length - 2;
+        int left = 0;
+        int right = nums.length - 1;
         
-        while (low <= high) {
-            int mid = (low + high) / 2;
-            if (mid % 2 == 0) {
-                if (nums[mid] != nums[mid + 1]) high = mid - 1; 
-                else low = mid + 1; 
-            } else {
-                if (nums[mid] == nums[mid + 1]) high = mid - 1; 
-                else low = mid + 1; 
-            }
+        while (left < right) {
+            int mid = (left + right) / 2;
+            if (mid % 2 == 1) mid--;
+            if (nums[mid] != nums[mid + 1]) right = mid;
+            else left = mid + 2;
         }
-        return nums[low];
+        return nums[left];
     }
 }
