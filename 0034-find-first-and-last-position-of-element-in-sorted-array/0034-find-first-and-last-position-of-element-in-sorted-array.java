@@ -1,27 +1,26 @@
 class Solution {
      public int[] searchRange(int[] nums, int target) {
-       int left = 0 ;
-        int right = nums.length -1;
-        int output [] = new int[2];
-            while (left <= right){
-               if (nums[left] == target){
-                   output[0] = left;
-                    while (left < right){
-                        if (nums[right] == target ){
-                            output[1] = right;
-                            return output;
-                        }else {
-                            right = right - 1;
-                        }
-                    }
-                    output[1] = left;
-                   return output;
-               }else if (nums[left] < target){
-                   left = left + 1;
-               }else if (nums[right] > target) {
-                   right = right - 1;
-               }
+        int low = 0;
+        int high = nums.length-1;
+        int[] ans = new int[2];
+
+        while(low<=high){
+            if(nums[low]==target){
+                ans[0]=low;
+                while(low<high){
+                    if(nums[high]==target){
+                        ans[1]=high;
+                        return ans;
+                    }else high = high-1;
+                }
+                ans[1]=low;
+                return ans;
+            }else if(nums[low]<target){
+                low = low+1;
+            }else if(nums[high]>target){
+                high=high-1;
             }
-        return new int[] {-1 , -1};
+        }
+        return new int[]{-1, -1};
     }
 }
