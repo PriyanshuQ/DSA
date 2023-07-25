@@ -1,16 +1,32 @@
 class Solution {
-    public int[] frequencySort(int[] nums) {
-        Map<Integer, Integer> map = new HashMap<>();
-        List<Integer> ans = new ArrayList<>();
-        for (int n : nums) {                            
-            ans.add(n);
-            map.put(n, map.getOrDefault(n, 0) + 1);
+    class Pair{
+        int num;
+        int freq;
+        Pair(int num, int freq){
+            this.num=num;
+            this.freq=freq;
         }
-
-        Collections.sort(ans, (a, b) ->                 
-            (map.get(a) == map.get(b))? b - a : map.get(a) - map.get(b)
-        );
-
-        return ans.stream().mapToInt(i -> i).toArray();
+    }
+    public int[] frequencySort(int[] nums) {
+        HashMap<Integer, Integer>h=new HashMap<>();
+        for(int i=0; i<nums.length; i++){
+            h.put(nums[i], h.getOrDefault(nums[i],0)+1);
+        }
+        PriorityQueue<Pair>pq=new PriorityQueue<>((a,b)->a.freq==b.freq?b.num-a.num: a.freq-b.freq);
+        for(int i: h.keySet()){
+            pq.add(new Pair(i, h.get(i)));
+        }
+        int arr[]=new int[nums.length];
+        int j=0;
+        while(!pq.isEmpty()){
+            int n=pq.peek().num;
+            int f=pq.peek().freq;
+            pq.poll();
+            for(int i=0; i<f; i++){
+                arr[j]=n;
+                j++;
+            }
+        }
+        return arr;
     }
 }
