@@ -2,6 +2,7 @@ class Solution {
     public List<List<Integer>> levelOrder(TreeNode root){
         Queue<TreeNode> q = new LinkedList<>();
         List<List<Integer>> list = new ArrayList<>();
+
         if(root==null) return list;
         q.offer(root);
 
@@ -18,4 +19,4 @@ class Solution {
         }
         return list;
     }
-} 
+}
